@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS 服务</title>
+</head>
+<body>
+
+	<dl ng-controller="DemoController">
+		<dt>{{title}}</dt>
+		<dd>absUrl: {{absUrl}}</dd>
+		<dd>url: {{url}}</dd>
+		<dd>host: {{host}}</dd>
+		<dd>search: {{search}}</dd>
+		<dd>hash: {{hash}}</dd>
+		<dd>protocol: {{protocol}}</dd>
+		<dd>port: {{port}}</dd>
+	</dl>
+	<script src="./libs/angular.min.js"></script>
+	<script>
+		var App = angular.module('App', []);
+
+		// $location内置服务
+
+		// AngularJS 专门提供了一个帮你获URL地址一个服务
+
+		App.controller('DemoController', ['$scope', '$location', function($scope, $location) {
+			
+			$scope.title = '学习$location服务';
+			// 注入依赖（服务），可在控制器中通过$scope使用服务的属性和方法
+			$scope.absUrl = $location.absUrl();
+
+			$scope.url = $location.url();
+
+			$scope.host = $location.host();
+
+			$scope.search = $location.search();
+
+			$scope.hash = $location.hash();
+
+			$scope.protocol = $location.protocol();
+
+			$scope.port = $location.port();
+
+		}]);
+
+		for(var key in location) {
+			console.log(key + '=>' + location[key]);
+		}
+
+		
+	</script>
+
+</body>
+</html>
